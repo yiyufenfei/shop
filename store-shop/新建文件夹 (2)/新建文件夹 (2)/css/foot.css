@@ -1,0 +1,14 @@
+.cl{ clear:both; overflow:hidden;}
+.kb{width:100%;height:20px; background-color:#ffffff;}
+
+#footer{ background:url(../image/footer_bg.png);height:190px; border-top:4px solid #ff6100; font-family:Tahoma,Helvetica,arial,sans-serif;}
+.footer{ width:1000px; height:150px; margin:0 auto; padding:20px 0 20px;}
+.fenge{ width:1px; height:150px; background:#FFF; border-left:1px solid #d7d7d7; float:left;}
+.ul1,.ul2,.ul3{ width:198px; height:150px; text-align:center;float:left;}
+.ul4{ float:right;}
+.footer b { color:#333; font-size:14px; line-height:50px; margin-bottom:10px;}
+.footer p a{ text-decoration:none; color:#666; font-size:12px; line-height:26px;}
+.footer p a:hover{ color:#0088cc;}
+.footer_img{ background:url(../image/footer_img.png); width:282px; height:54px; display:block; text-indent:-9999px; margin-bottom:20px;}
+.ul4 p { font-size:12px; color:#666; text-indent:76px; line-height:30px;}
+.ul4 p a{ font-size:12px; color:#666; margin-right:10px;}
