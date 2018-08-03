@@ -12,8 +12,8 @@
 
           <!--头部top右开始-->
           <div class="top_right">
-            <a href="login.html" target="_parent">登录</a><span>|</span>
-            <a href="registration.html" target="_parent">注册</a>
+            <a target="_parent" @click="loaddings()">登录</a><span>|</span>
+            <a  target="_parent" @click="regresss()">注册</a>
             <span>|</span><a href="#">个人中心</a>
             <span>|</span>
             <a href="#">我的服务</a><span>|</span><a href="#">帮助说明</a><span>|</span>
@@ -59,6 +59,24 @@
       <!--头部menu结束-->
     </div>
   </div>
+
+  <div class="index-header" style="height:600px">
+    <ul class="indexul">
+      <li>全部有商品分类</li>
+      <li>优惠券</li>
+      <li>特色贵州</li>
+      <li>三品一标馆</li>
+    </ul>
+    <!--轮播图片-->
+    <div class="lunboxbox">
+      <ul class="lunbo" :style="'margin-left:'+num+'px'">
+        <li v-for="item in list">
+          <img v-bind:src="item">
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div>
     <div class="kb cl"></div>
     <div id="footer">
@@ -100,13 +118,93 @@
     name: 'index',
     data(){
       return{
+        list:[
+          "../../static/images/1.jpg",
+          "../../static/images/2.jpg",
+          "../../static/images/3.jpg",
+          "../../static/images/4.jpg",
+          "../../static/images/5.jpg",
+        ],
+        num:0,
+        number:0,
       }
     },
     computed: {
     },
     components: {
     },
+    mounted:function(){
+      this.$nextTick(function () {
+        this.cartView()
+      })
+    },
     methods: {
+      cartView:function(){
+//        this.number++;
+        setInterval(function(){
+          this.num=-(this.num+10);
+        },1000)
+      },
+
+    loaddings:function () {
+        this.$router.push("ShopLoad")
+      },
+      regresss:function () {
+        this.$router.push("ShopRegress")
+      },
     }
   }
 </script>
+<style>
+  .lunbo li img{
+    width: 100%;
+    height: 100%;
+  }
+  .indexul{
+    overflow: hidden;
+    width:1000px;
+    display: block;
+    font-size: 13px;
+    margin:0 auto;
+    box-sizing: border-box;
+  }
+  .lunbo li{
+    width: 20%;
+    height: 100%;
+    float: left;
+    margin:0 auto;
+    padding:0;
+    overflow:hidden;
+    display:inline
+  }
+  .lunbo{
+    width: 500%;
+    height: 100%;
+    list-style: none;
+    margin:0px;
+    padding:0px;
+  }
+  .lunboxbox{
+    width: 100%;
+    height: 500px;
+    background: red;
+    list-style-type:none;
+    margin:0 auto;
+    overflow:hidden;
+  }
+  .indexul li{
+    list-style: none;
+    float: left;
+    padding:15px 25px 15px 25px;
+    box-sizing: border-box;
+  }
+  .index-header{
+    width: 100%;
+    height: 500px;
+  }
+  .index-header{
+    width: 100%;
+    height: 40px;
+    /*background: red;*/
+  }
+</style>
