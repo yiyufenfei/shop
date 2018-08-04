@@ -1,6 +1,12 @@
 
 <template>
 <div>
+  <!--购物车-->
+  <div class="goodscar">
+    <ul>
+      <li>购物车</li>
+    </ul>
+  </div>
   <div>
     <div id="head" style="height: 188px">
       <!--头部top开始-->
@@ -44,7 +50,7 @@
       <!--头部main结束-->
 
       <!--头部menu开始-->
-      <div class="menu">
+      <div class="menu" style="z-index:3">
         <div class="head_menu">
           <ul style="box-sizing: border-box;margin: 0">
             <li><a href="index.html" target="_parent">首页</a></li>
@@ -61,19 +67,42 @@
   </div>
 
   <div class="index-header" style="height:600px">
-    <ul class="indexul">
-      <li>全部有商品分类</li>
-      <li>优惠券</li>
-      <li>特色贵州</li>
-      <li>三品一标馆</li>
-    </ul>
+    <div style="width: 1000px;margin: 0 auto;">
+      <ul class="indexul">
+        <li style="position: relative;color: white;z-index: 0">全部有商品分类
+          <div class="listdatas"></div>
+        </li>
+        <li>优惠券</li>
+        <li>特色贵州</li>
+        <li>三品一标馆</li>
+      </ul>
+
+    </div>
     <!--轮播图片-->
-    <div class="lunboxbox">
-      <ul class="lunbo" :style="'margin-left:'+num+'px'">
-        <li v-for="item in list">
+    <div class="lunboxbox" id="ul">
+      <ul class="lunbo" :style="'opacity:'+num">
+        <li v-for="item,index in list" v-show="listshow[index]">
           <img v-bind:src="item">
         </li>
       </ul>
+    </div>
+  </div>
+  <!--商品列表-->
+  <div class="pagecount" style="position: relative">
+    <div class="pagecounts">
+        <div class="cscount" style="position: relative">
+          <div class="cs" v-for="item in goodslistimg">
+            <img :src="item">
+            <div class="twop" style="width: 100%;overflow: hidden;">
+              <p class="goodsname" style="margin:0 ">上平名称商品名商品名称商品名称商品名称</p>
+              <p class="price" style="color: #ff6000;margin:0 ">￥300</p>
+            </div>
+          </div>
+        </div>
+      <!--主题-->
+      <div class="mintitle">
+        <img :src="minphto">
+      </div>
     </div>
   </div>
 
@@ -125,8 +154,24 @@
           "../../static/images/4.jpg",
           "../../static/images/5.jpg",
         ],
-        num:0,
+        listshow:[true,false,false,false,false],
+        goodslistimg:[
+          "../../static/images/u=133680563,3592432663&fm=27&gp=0.jpg",
+          "../../static/images/u=152148260,2888950566&fm=27&gp=0.jpg",
+          "../../static/images/u=1158613928,3076234435&fm=27&gp=0.jpg",
+          "../../static/images/u=2383555999,1443448416&fm=27&gp=0.jpg",
+          "../../static/images/u=2721462338,1991093246&fm=27&gp=0.jpg",
+          "../../static/images/u=3084857233,400094367&fm=27&gp=0.jpg",
+          "../../static/images/u=3318517083,2462679086&fm=27&gp=0.jpg",
+          "../../static/images/u=3621152253,1345415073&fm=27&gp=0.jpg",
+          "../../static/images/u=3318517083,2462679086&fm=27&gp=0.jpg",
+          "../../static/images/u=3621152253,1345415073&fm=27&gp=0.jpg",
+        ],
+        minphto://主题图片
+          "../../static/images/TB1ssWnmrZnBKNjSZFGSuvt3FXa.jpg",
+        num:1,
         number:0,
+        step:0,
       }
     },
     computed: {
@@ -140,12 +185,36 @@
     },
     methods: {
       cartView:function(){
-//        this.number++;
+        var thiss=this;
         setInterval(function(){
-          this.num=-(this.num+10);
-        },1000)
-      },
+          thiss.timers();
 
+
+        },3000)
+      },
+      timers:function () {
+        var thiss=this;
+        var timer=setInterval(function(){
+//          if(thiss.num<=1&&thiss.num>0){
+//            thiss.num-=0.1;
+//          }
+          if(thiss.num>0.6){
+            thiss.num-=0.1;
+          }
+          else{
+            thiss.num=1;
+            thiss.step++;
+            if(thiss.step==5){
+              thiss.step=0;
+            }
+            for(var i=0;i<thiss.list.length;i++){
+              thiss.listshow[i]=false;
+            }
+            thiss.listshow[thiss.step]=true;
+            clearInterval(timer)
+          }
+        },100)
+      },
     loaddings:function () {
         this.$router.push("ShopLoad")
       },
@@ -156,16 +225,122 @@
   }
 </script>
 <style>
+  .indexul li:hover{
+    color: #ff6000;
+    font-weight: bold;
+  }
+  .goodscar{
+    width: 30px;
+    height: 100vh;
+    background: rgba(0,0,0,1);
+    position: fixed;
+    right: 0;
+    z-index: 999;
+  }
+  .mintitle img{
+    width: 100%;
+    height: 100%;
+  }
+  .mintitle{
+    width: 250px;
+    height: 593px;
+    padding: 10;
+    box-sizing: border-box;
+  }
+  .twop{
+    padding: 0 20px 0 20px;
+    box-sizing: border-box;
+  }
+  .twop p:nth-child(1){
+   color: #303030;
+    padding-top:15px
+  }
+  .twop p:nth-child(2){
+    font-size: 15px;
+    padding-top:10px
+  }
+  .cs:hover{
+    border: 2px solid #ff6000;
+  }
+  .cs{
+    text-align: center;
+    padding:0 4px 0 4px;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+  .goodsname{
+
+  }
+  .cscount{
+    width: 1100px;
+    overflow: hidden;
+    float: right;
+    margin: 0 auto;
+    box-sizing: border-box;
+    z-index: 55;
+  }
+  .pagecounts{
+    width:1355px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .pagecounts .cs{
+    width:210px;
+    margin:5px 5px 5px 5px;
+    float: left;
+    height: 289px;
+    background: white;
+    box-sizing: border-box;
+  }
+  .pagecounts .cs img{
+    width: 100%;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+    vertical-align:bottom;
+  }
+  .pagecount{
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    margin: 0 auto;
+    background: #f5f5f5;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .head_menu ul li a:hover{
+    color:  #ff6000;
+  }
+  .head_menu ul li:hover{
+    background: white;
+  }
+  .listdatas{
+    width: 300px;
+    height: 300px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 47.5px;
+    left: 0;
+    z-index: 33;
+    display: none;
+  }
+  .indexul li:nth-child(1):hover .listdatas{
+    display: block;
+  }
+  .indexul li:nth-child(1){
+    background: #ff6000;
+  }
   .lunbo li img{
     width: 100%;
     height: 100%;
   }
   .indexul{
-    overflow: hidden;
     width:1000px;
     display: block;
     font-size: 13px;
     margin:0 auto;
+    padding: 0;
     box-sizing: border-box;
   }
   .lunbo li{
@@ -187,10 +362,10 @@
   .lunboxbox{
     width: 100%;
     height: 500px;
-    background: red;
     list-style-type:none;
     margin:0 auto;
     overflow:hidden;
+    border-top: solid 1px  #ff6000;;
   }
   .indexul li{
     list-style: none;
@@ -201,6 +376,7 @@
   .index-header{
     width: 100%;
     height: 500px;
+    position: relative;
   }
   .index-header{
     width: 100%;
