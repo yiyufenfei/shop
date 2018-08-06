@@ -240,11 +240,12 @@
   .mintitle img{
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
   }
   .mintitle{
-    width: 250px;
+    width: 20%;
     height: 593px;
-    padding: 10;
+    padding: 5px;
     box-sizing: border-box;
   }
   .twop{
@@ -262,17 +263,8 @@
   .cs:hover{
     border: 2px solid #ff6000;
   }
-  .cs{
-    text-align: center;
-    padding:0 4px 0 4px;
-    font-size: 12px;
-    box-sizing: border-box;
-  }
-  .goodsname{
-
-  }
   .cscount{
-    width: 1100px;
+    width: 80%;
     overflow: hidden;
     float: right;
     margin: 0 auto;
@@ -280,19 +272,22 @@
     z-index: 55;
   }
   .pagecounts{
-    width:1355px;
+    width:80%;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
     box-sizing: border-box;
   }
   .pagecounts .cs{
-    width:210px;
+    width:19%;
+    text-align: center;
+    padding:0 4px 0 4px;
+    font-size: 12px;
+    box-sizing: border-box;
     margin:5px 5px 5px 5px;
     float: left;
     height: 289px;
     background: white;
-    box-sizing: border-box;
   }
   .pagecounts .cs img{
     width: 100%;
