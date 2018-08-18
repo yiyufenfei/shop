@@ -4,7 +4,7 @@
   <!--购物车-->
   <div class="goodscar">
     <ul>
-      <li>购物车</li>
+      <li @click="tocar()">购物车</li>
     </ul>
   </div>
   <div>
@@ -188,8 +188,6 @@
         var thiss=this;
         setInterval(function(){
           thiss.timers();
-
-
         },3000)
       },
       timers:function () {
@@ -215,6 +213,9 @@
           }
         },100)
       },
+      tocar:function () {
+        this.$router.push("Shopcar")
+      },
     loaddings:function () {
         this.$router.push("ShopLoad")
       },
@@ -225,6 +226,17 @@
   }
 </script>
 <style>
+  .goodscar ul{
+    padding: 0;
+    margin: 100px auto;
+    list-style: none;
+  }
+  .goodscar ul li:nth-child(1){
+    font-size: 13px;
+    color: #ff6000;
+    text-align: center;
+    padding:0 3px 0 3px;
+  }
   .indexul li:hover{
     color: #ff6000;
     font-weight: bold;
