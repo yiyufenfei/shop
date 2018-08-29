@@ -97,9 +97,9 @@
               </div>
               <div class="nunmber">
                 <div class="box">
-                  <div class="box-left"></div>
+                  <div class="box-left" style="line-height:22px;text-aline:center">-</div>
                   <div class="box-middle">1</div>
-                  <div class="box-right"></div>
+                  <div class="box-right" style="line-height:22px;text-aline:center">+</div>
                 </div>
               </div>
               <div class="theprice">￥10000</div>
