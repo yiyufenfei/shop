@@ -160,7 +160,7 @@
       </ul>
      <div class="jiesuanright">
        <!--<span class="huise">结算</span>-->
-       <span class="zhengchang">结算</span>
+       <span class="zhengchang"  @click="tomany()">结算</span>
        <span>0.00</span>
        <span>合计（不含运费）:</span>
        <span>件</span>
@@ -220,6 +220,37 @@
         </div>
       </div>
     </div>
+     <div class="shouhua" v-show="jiesuan">
+        <div class="boxs">
+          <div class="title">新增收货人信息</div>
+          <div class="en">
+            <span>收货人:</span>
+            <input placeholder="请输入收货人"/>
+          </div>
+          <div class="en">
+            <span>详细地址:</span>
+            <input placeholder="请输入详细地址"/>
+          </div>
+          <div class="en">
+            <span>手机号码:</span>
+            <input placeholder="请输入手机号"/>
+          </div>
+          <div class="en">
+            <span>固定电话:</span>
+            <input placeholder="请输入固定号码"/>
+          </div>
+          <div class="en">
+            <span>邮箱地址:</span>
+            <input placeholder="请输入邮箱地址"/>
+          </div>
+          <p>用来接收订单提醒邮件，便于您及时了解订单状态</p>
+          <div class="en">
+            <span>地址别名:</span>
+            <input placeholder="请输入地址别名"/>
+          </div>
+          <div class="submitbtn" @click="savethis()">保存收货人地址</div>
+        </div>
+     </div>
   </div>
 </template>
 <script>
@@ -227,6 +258,7 @@
     name: 'Shopcar',
     data(){
       return{
+        jiesuan:false,
           isshowyellow:true,
         list:[
           "../../static/images/1.jpg",
@@ -244,6 +276,12 @@
     mounted:function(){
     },
     methods: {
+      tomany:function(){
+        this.jiesuan=true;
+      },
+      savethis:function(){
+         this.jiesuan=false;
+      },
       lack:function () {
          this.isshowyellow=!this.isshowyellow
       },
@@ -251,6 +289,70 @@
   }
 </script>
 <style>
+.submitbtn{
+  width:100px;
+  height:25px;
+  background:#ff6000;
+  font-size:13px;
+  color:white;
+  margin:15px 60px 50px 70px;
+  line-height:25px;
+  border-radius:2px;
+}
+.boxs .title{
+  width:100%;
+  height:25px;
+  background:#f1f3f4;
+  position:absolute;
+  top:0;
+  right:0;
+  line-height:25px;
+  text-align:left;
+  padding-left:20px;
+  font-size:12px;
+  box-sizing:border-box;
+}
+.boxs p{
+  font-size:12px;
+  text-align:left;
+  margin-left:70px;
+}
+.en span{
+  float:left;
+  font-size:13px;
+  line-height:25px;
+  margin-right:10px;
+  width:60px;
+  text-align:left;
+}
+.en input{
+  float:left;
+  height:20px;
+  width:250px;
+  font-size:12px;
+  padding-left:10px;
+}
+.en{
+  width:100%;
+  height:30px;
+  margin-top:10px;
+}
+.shouhua .boxs{
+  width:500px;
+  padding:40px 20px 10px 20px;
+  background:white;
+  margin:0 auto;
+  position:relative;
+  margin-top:200px;
+}
+.shouhua{
+  width:100%;
+  height:100vh;
+  background:rgba(0,0,0,0.7);
+  position:fixed;
+  top:0;
+  left:0;
+}
   .goodlist{
     position: relative;
   }
@@ -358,7 +460,6 @@
     width: 1000px;
     height: 40px;
     line-height: 45px;
-    /*background: red;*/
   }
   .jiesuanright span:nth-child(5){
     padding: 0 5px 0 5px;
@@ -573,7 +674,6 @@
     width: 15px;
     height: 15px;
     float: left;
-    background: red;
     margin-right: 6px;
     margin-left: 6px;
   }
